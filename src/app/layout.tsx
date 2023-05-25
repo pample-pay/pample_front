@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import Image from "next/image";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -9,8 +9,8 @@ import {
   faBars, // class 명을 참고해서 import 시켜주고 ex) fa-arrow-left
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
-
-const inter = Inter({ subsets: ["latin"] });
+import pharmacy from "../../public/pharmacy_people.png";
+const sans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Pample",
@@ -27,18 +27,18 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.png" />
       </head>
-      <body className={inter.className}>
-        <header className="flex justify-between items-center">
-          <Link href="/" className="ml-5">
+      <body className={sans.className}>
+        <header className="flex justify-between items-center container mx-auto">
+          <Link href="/">
             <Image
-              src="/pharmacy_people.png"
+              src={pharmacy}
               alt="pharmacy people"
               width={100}
               height={100}
               priority={true}
             />
           </Link>
-          <div className="w-10 h-10 rounded-full flex justify-center items-center hover:bg-neutral-200 mr-10">
+          <div className="w-10 h-10 rounded-full flex justify-center items-center hover:bg-neutral-200">
             <FontAwesomeIcon icon={faBars} className="fa-2x" />
           </div>
         </header>
