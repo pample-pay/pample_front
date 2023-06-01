@@ -7,9 +7,9 @@ import { GeolocationContext } from "@/context/GeolocationContext";
 import mapMark from "./api/mapMark";
 
 export default function Home() {
-  const [drugstoreLocation, setDrugstoreLocation] = useState<Promise<object>>(
-    mapMark(37.5666103, 126.9783882)
-  );
+  const [drugstoreLocation, setDrugstoreLocation] = useState<
+    Promise<object> | string
+  >("");
   const [myLocation, setMyLocation] = useState<
     { latitude: number; longitude: number } | string
   >("");
@@ -25,6 +25,7 @@ export default function Home() {
 
   const error = () => {
     setMyLocation({ latitude: 37.5666103, longitude: 126.9783882 });
+    setDrugstoreLocation(mapMark(37.5666103, 126.9783882));
   };
 
   useEffect(() => {

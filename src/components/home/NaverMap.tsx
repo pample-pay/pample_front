@@ -11,6 +11,7 @@ export default function NaverMap() {
 
     if (
       typeof myLocation !== "string" &&
+      typeof drugstoreLocation !== "string" &&
       drugstoreLocation !== undefined &&
       myLocation !== undefined
     ) {
@@ -18,10 +19,6 @@ export default function NaverMap() {
         myLocation.latitude,
         myLocation.longitude
       );
-      // const drugstoreLocation = mapMark(
-      //   myLocation.latitude,
-      //   myLocation.longitude
-      // );
       //네이버 지도 옵션 선택
       const mapOptions = {
         center: mapLocation,
