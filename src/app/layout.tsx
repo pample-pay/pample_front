@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import pharmacy from "../../public/pharmacy_people.png";
-import Header from "./components/Header";
+import Header from "../components/Header";
 const sans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {

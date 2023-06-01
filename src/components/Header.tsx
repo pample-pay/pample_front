@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import pharmacy from "../../../public/pharmacy_people.png";
+import pharmacy from "../../public/pharmacy_people.png";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;

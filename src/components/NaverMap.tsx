@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import mapMark from "../api/mapMark";
+import mapMark from "../app/api/mapMark";
 
 export default function NaverMap() {
   const mapElement = useRef<HTMLElement | null | any>(null);
@@ -77,7 +77,7 @@ export default function NaverMap() {
     }
   }, [myLocation]);
   return (
-    <div className="container mx-auto">
+    <>
       <div
         ref={mapElement}
         className="w-[40rem] h-[40rem] rounded-2xl border"
@@ -87,6 +87,6 @@ export default function NaverMap() {
         src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8bqnf5try9"
         async
       ></script>
-    </div>
+    </>
   );
 }

@@ -5,6 +5,7 @@ const mapMark = async (mylat: number, mylng: number): Promise<object> => {
     mylat: mylat,
     mylng: mylng,
   });
+  console.log(response.data);
   return response.data;
 };
 
