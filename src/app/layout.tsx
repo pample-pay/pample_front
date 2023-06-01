@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import pharmacy from "../../public/pharmacy_people.png";
+import Header from "./components/Header";
 const sans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata = {
@@ -28,20 +29,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.png" />
       </head>
       <body className={sans.className}>
-        <header className="flex justify-between items-center container mx-auto">
-          <Link href="/">
-            <Image
-              src={pharmacy}
-              alt="pharmacy people"
-              width={100}
-              height={100}
-              priority={true}
-            />
-          </Link>
-          <div className="w-10 h-10 rounded-full flex justify-center items-center hover:bg-neutral-200">
-            <FontAwesomeIcon icon={faBars} className="fa-2x" />
-          </div>
-        </header>
+        <Header />
         {children}
       </body>
     </html>

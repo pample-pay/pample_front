@@ -42,7 +42,7 @@ export default function NaverMap() {
       //네이버 지도 옵션 선택
       const mapOptions = {
         center: mapLocation,
-        zoom: 16,
+        zoom: 17,
         zoomControl: true,
         zoomControlOptions: {
           position: naver.maps.Position.TOP_RIGHT,
@@ -59,6 +59,13 @@ export default function NaverMap() {
           new naver.maps.Marker({
             position: aroundDrugstore,
             map: map,
+            icon: {
+              content: [
+                '<div class="flex rounded-[12px] justify-center bg-white p-1 border	border-sky-500">',
+                `<div class="font-bold	">${index.drugstore_name}</div>`,
+                "</div>",
+              ].join(""),
+            },
           });
         });
       });
