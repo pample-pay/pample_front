@@ -1,44 +1,27 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import mapMark from "../app/api/mapMark";
+import { useEffect, useRef, useContext } from "react";
+import { GeolocationContext } from "@/context/GeolocationContext";
 
 export default function NaverMap() {
   const mapElement = useRef<HTMLElement | null | any>(null);
-
-  const [myLocation, setMyLocation] = useState<
-    { latitude: number; longitude: number } | string
-  >("");
-
-  const success = (position: GeolocationPosition) => {
-    if (!mapElement.current || !naver) return;
-    setMyLocation({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    });
-  };
-
-  const error = () => {
-    setMyLocation({ latitude: 37.5666103, longitude: 126.9783882 });
-  };
+  const { drugstoreLocation, myLocation } = useContext(GeolocationContext);
 
   useEffect(() => {
     const { naver } = window;
-    //현재 위치 불러오기
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error);
-    }
-  }, []);
 
-  useEffect(() => {
-    if (typeof myLocation !== "string") {
+    if (
+      typeof myLocation !== "string" &&
+      drugstoreLocation !== undefined &&
+      myLocation !== undefined
+    ) {
       const mapLocation = new naver.maps.LatLng(
         myLocation.latitude,
         myLocation.longitude
       );
-      const drugstoreLocation = mapMark(
-        myLocation.latitude,
-        myLocation.longitude
-      );
+      // const drugstoreLocation = mapMark(
+      //   myLocation.latitude,
+      //   myLocation.longitude
+      // );
       //네이버 지도 옵션 선택
       const mapOptions = {
         center: mapLocation,
@@ -75,7 +58,7 @@ export default function NaverMap() {
         map: map,
       });
     }
-  }, [myLocation]);
+  }, [drugstoreLocation, myLocation]);
   return (
     <>
       <div
