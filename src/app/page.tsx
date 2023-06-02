@@ -4,7 +4,7 @@ import DrugstoreList from "../components/home/DrugstoreList";
 import HomeContainer from "@/components/home/HomeContainer";
 import { useEffect, useState } from "react";
 import { GeolocationContext } from "@/context/GeolocationContext";
-import mapMark from "./api/mapMark";
+import mapMark from "./api/navermap/mapMark";
 
 export default function Home() {
   const [drugstoreLocation, setDrugstoreLocation] = useState<
