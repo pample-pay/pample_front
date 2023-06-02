@@ -4,6 +4,6 @@ export default function HomeContainer({
   children: React.ReactNode;
 }) {
   return (
-    <div className="container mx-auto flex justify-between">{children}</div>
+    <div className="container mx-auto flex justify-evenly">{children}</div>
   );
 }
