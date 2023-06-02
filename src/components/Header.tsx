@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import pharmacy from "../../public/pharmacy_people.png";
@@ -6,8 +7,9 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars, // class 명을 참고해서 import 시켜주고 ex) fa-arrow-left
+  faBars, // className 명을 참고해서 import 시켜주고 ex) fa-arrow-left
 } from "@fortawesome/free-solid-svg-icons";
+import { Menu } from "@headlessui/react";
 
 export default function Header() {
   return (
@@ -21,9 +23,30 @@ export default function Header() {
           priority={true}
         />
       </Link>
-      <div className="w-10 h-10 rounded-full flex justify-center items-center hover:bg-neutral-200">
-        <FontAwesomeIcon icon={faBars} className="fa-2x" />
-      </div>
+      <Menu>
+        <div className="relative">
+          <Menu.Button className="w-10 h-10 rounded-full hover:bg-neutral-200">
+            <FontAwesomeIcon icon={faBars} className="fa-2x" />
+          </Menu.Button>
+          <Menu.Items className="absolute w-[20rem] flex flex-col	top-16 right-1 z-10">
+            <div className="rounded-md bg-gray-50 border-4 border-gray-200	">
+              <Menu.Item>
+                {
+                // map 함수 쓰면 됨
+                  <Link
+                    className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
+                    href="/account-settings"
+                  >
+                    Account settings
+                  </Link>
+                  
+                }
+              </Menu.Item>
+            
+            </div>
+          </Menu.Items>
+        </div>
+      </Menu>
     </header>
   );
 }
