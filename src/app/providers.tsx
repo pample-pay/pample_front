@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { geolocationContext } from "@/context/geolocationContext";
+import { GeolocationContext } from "@/context/GeolocationContext";
 import useUserLocation from "@/hooks/useUserLocation";
 import { ThemeProvider } from "@material-tailwind/react";
 
@@ -15,11 +15,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <geolocationContext.Provider value={locations}>
+        <GeolocationContext.Provider value={locations}>
           {children}
-        </geolocationContext.Provider>
+        </GeolocationContext.Provider>
       </ThemeProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

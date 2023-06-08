@@ -5,4 +5,4 @@ interface IGeolocationContext {
   myLocation?: { latitude: number; longitude: number } | string;
 }
 
-export const geolocationContext = createContext<IGeolocationContext>({});
+export const GeolocationContext = createContext<IGeolocationContext>({});
