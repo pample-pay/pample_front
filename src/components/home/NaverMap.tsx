@@ -10,7 +10,7 @@ export default function NaverMap() {
       ></div>
       <script
         type="text/javascript"
-        src="http://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8bqnf5try9"
+        src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=8bqnf5try9"
         async
       ></script>
     </>
