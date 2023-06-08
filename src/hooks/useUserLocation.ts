@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import mapMark from "../app/api/navermap/mapMark";
+import mapMarkApi from "../app/apis/navermap/mapMarkApi";
 
 export default function useUserLocation() {
   const [drugstoreLocation, setDrugstoreLocation] = useState<
@@ -14,13 +14,13 @@ export default function useUserLocation() {
       longitude: position.coords.longitude,
     });
     setDrugstoreLocation(
-      mapMark(position.coords.latitude, position.coords.longitude)
+      mapMarkApi(position.coords.latitude, position.coords.longitude)
     );
   };
 
   const error = () => {
     setMyLocation({ latitude: 37.5666103, longitude: 126.9783882 });
-    setDrugstoreLocation(mapMark(37.5666103, 126.9783882));
+    setDrugstoreLocation(mapMarkApi(37.5666103, 126.9783882));
   };
 
   useEffect(() => {

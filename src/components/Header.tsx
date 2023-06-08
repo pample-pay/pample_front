@@ -31,18 +31,24 @@ export default function Header() {
           <Menu.Items className="absolute w-[20rem] flex flex-col	top-16 right-1 z-10">
             <div className="rounded-md bg-gray-50 border-4 border-gray-200	">
               <Menu.Item>
+                <Link
+                  className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
+                  href="/login"
+                >
+                  로그인
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
                 {
-                // map 함수 쓰면 됨
+                  // map 함수 쓰면 됨
                   <Link
                     className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
-                    href="/account-settings"
+                    href="/signup"
                   >
-                    Account settings
+                    회원가입
                   </Link>
-                  
                 }
               </Menu.Item>
-            
             </div>
           </Menu.Items>
         </div>
