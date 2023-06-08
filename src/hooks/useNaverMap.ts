@@ -1,9 +1,9 @@
+import { geolocationContext } from '@/context/geolocationContext';
 import { useEffect, useRef, useContext } from "react";
-import { GeolocationContext } from "@/context/GeolocationContext";
 
 export default function useNaverMap() {
   const mapElement = useRef<HTMLElement | null | any>(null);
-  const { drugstoreLocation, myLocation } = useContext(GeolocationContext);
+  const { drugstoreLocation, myLocation } = useContext(geolocationContext);
 
   useEffect(() => {
     const { naver } = window;

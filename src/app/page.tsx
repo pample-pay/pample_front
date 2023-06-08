@@ -2,7 +2,7 @@
 import NaverMap from "../components/home/NaverMap";
 import DrugstoreList from "../components/home/DrugstoreList";
 import HomeContainer from "@/components/home/HomeContainer";
-import { GeolocationContext } from "@/context/GeolocationContext";
+import { geolocationContext } from "@/context/geolocationContext";
 import useUserLocation from "../hooks/useUserLocation";
 
 export default function Home() {
@@ -10,10 +10,8 @@ export default function Home() {
   const value = { drugstoreLocation, myLocation };
   return (
     <HomeContainer>
-      <GeolocationContext.Provider value={value}>
-        <NaverMap />
-        <DrugstoreList />
-      </GeolocationContext.Provider>
+      <NaverMap />
+      <DrugstoreList />
     </HomeContainer>
   );
 }

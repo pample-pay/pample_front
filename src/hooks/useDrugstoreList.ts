@@ -1,9 +1,9 @@
+import { geolocationContext } from "@/context/geolocationContext";
 import { useContext, useEffect, useState } from "react";
-import { GeolocationContext } from "@/context/GeolocationContext";
 
 export default function useDrugstoreList() {
   const [location, setLocation] = useState<object>({});
-  const { drugstoreLocation } = useContext(GeolocationContext);
+  const { drugstoreLocation } = useContext(geolocationContext);
   useEffect(() => {
     if (typeof drugstoreLocation !== "string") {
       drugstoreLocation?.then((obj) => {

@@ -1,21 +1,13 @@
-import type { ReactElement } from "react";
+"use client";
+import { Input } from "@material-tailwind/react";
 
-import Image from "next/image";
-import Link from "next/link";
 export default function LoginPage() {
   return (
-    <div className="flex flex-col	justify-center items-center">
-      <Link href="/">
-        <Image
-          src="/pharmacy_people.png"
-          width={250}
-          height={250}
-          alt="Picture of the author"
-        />
-      </Link>
+    <div className="flex flex-col	justify-center items-center w-30">
+      <Input color="blue"  />
+      <Input color="purple" label="Input Purple" />
+      <Input color="indigo" label="Input Indigo" />
+      <Input color="teal" label="Input Teal" />
     </div>
   );
 }
-LoginPage.getLayout = (page: ReactElement) => {
-  return page;
-};
