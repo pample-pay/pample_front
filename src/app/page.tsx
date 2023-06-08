@@ -1,17 +1,13 @@
 "use client";
 import NaverMap from "../components/home/NaverMap";
 import DrugstoreList from "../components/home/DrugstoreList";
-import HomeContainer from "@/components/home/HomeContainer";
-import { geolocationContext } from "@/context/geolocationContext";
-import useUserLocation from "../hooks/useUserLocation";
+import Container from "@/components/Container";
 
 export default function Home() {
-  const { drugstoreLocation, myLocation } = useUserLocation();
-  const value = { drugstoreLocation, myLocation };
   return (
-    <HomeContainer>
+    <Container className="justify-evenly">
       <NaverMap />
       <DrugstoreList />
-    </HomeContainer>
+    </Container>
   );
 }

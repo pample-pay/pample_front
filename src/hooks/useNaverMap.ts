@@ -1,4 +1,4 @@
-import { geolocationContext } from '@/context/geolocationContext';
+import { geolocationContext } from "@/context/geolocationContext";
 import { useEffect, useRef, useContext } from "react";
 
 export default function useNaverMap() {
@@ -40,7 +40,7 @@ export default function useNaverMap() {
             map: map,
             icon: {
               content: [
-                '<div class="flex rounded-[12px] justify-center bg-white p-1 border	border-sky-500">',
+                `<div style="background-color:white; border-radius:12px; padding:3px; border: 1px solid rgb(34 211 238); ">`,
                 `<div class="font-bold	">${index.drugstore_name}</div>`,
                 "</div>",
               ].join(""),
