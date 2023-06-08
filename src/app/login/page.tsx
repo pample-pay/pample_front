@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function LoginPage() {
   return (
     <Container className="flex-col justify-center items-center m-18">
-      <Link href='/'>
+      <Link href="/">
         <Image
           src={pharmacy}
           alt="pharmacy people"
@@ -38,7 +38,7 @@ export default function LoginPage() {
           </Button>
         </div>
       </div>
-      <Breadcrumbs className="bg-white ">
+      <Breadcrumbs separator="|" className="bg-white ">
         <Link href="#" className="opacity-60">
           비밀번호 찾기
         </Link>
