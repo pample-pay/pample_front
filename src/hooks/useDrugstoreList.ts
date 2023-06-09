@@ -1,16 +1,17 @@
-import { GeolocationContext } from "@/context/GeolocationContext";
-import { useContext, useEffect, useState } from "react";
+import { useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
 
 export default function useDrugstoreList() {
   const [location, setLocation] = useState<object>({});
-  const { drugstoreLocation } = useContext(GeolocationContext);
+  const drugstoreLocation = useAppSelector(
+    (state) => state.locationReducer.drugstoreLocation
+  );
+
   useEffect(() => {
-    if (typeof drugstoreLocation !== "string") {
-      drugstoreLocation?.then((obj) => {
-        setLocation(obj);
-        return;
-      });
-    }
+    drugstoreLocation?.then((obj) => {
+      setLocation(obj);
+      return;
+    });
   }, [drugstoreLocation]);
 
   return location;

@@ -1,34 +1,38 @@
-import { useEffect, useState } from "react";
+import { useAppDispatch } from "./../redux/hooks";
+import { useEffect } from "react";
 import mapMarkApi from "../app/apis/navermap/mapMarkApi";
+import {
+  setMyLocation,
+  setDrugstoreLocation,
+} from "@/redux/features/userLocation";
 
 export default function useUserLocation() {
-  const [drugstoreLocation, setDrugstoreLocation] = useState<
-    Promise<object> | string
-  >("");
-  const [myLocation, setMyLocation] = useState<
-    { latitude: number; longitude: number } | string
-  >("");
-  const success = (position: GeolocationPosition) => {
-    setMyLocation({
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude,
-    });
-    setDrugstoreLocation(
-      mapMarkApi(position.coords.latitude, position.coords.longitude)
-    );
-  };
-
-  const error = () => {
-    setMyLocation({ latitude: 37.5666103, longitude: 126.9783882 });
-    setDrugstoreLocation(mapMarkApi(37.5666103, 126.9783882));
-  };
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+  
+    const error = () => {
+      dispatch(setDrugstoreLocation(mapMarkApi(37.5666103, 126.9783882)));
+    };
     //현재 위치 불러오기
+    const success = (position: GeolocationPosition) => {
+      dispatch(
+        setMyLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+      );
+      dispatch(
+        setDrugstoreLocation(
+          mapMarkApi(position.coords.latitude, position.coords.longitude)
+        )
+      );
+    };
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
     }
-  }, []);
+  }, [dispatch]);
 
-  return { drugstoreLocation, myLocation };
+  return {};
 }

@@ -1,19 +1,20 @@
-import { GeolocationContext } from "@/context/GeolocationContext";
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef } from "react";
+import { useAppSelector } from "@/redux/hooks";
+import useUserLocation from "./useUserLocation";
 
 export default function useNaverMap() {
   const mapElement = useRef<HTMLElement | null | any>(null);
-  const { drugstoreLocation, myLocation } = useContext(GeolocationContext);
-
+  useUserLocation();
+  const drugstoreLocation = useAppSelector(
+    (state) => state.locationReducer.drugstoreLocation
+  );
+  const myLocation = useAppSelector(
+    (state) => state.locationReducer.myLocation
+  );
   useEffect(() => {
     const { naver } = window;
 
-    if (
-      typeof myLocation !== "string" &&
-      typeof drugstoreLocation !== "string" &&
-      drugstoreLocation !== undefined &&
-      myLocation !== undefined
-    ) {
+    if (drugstoreLocation !== null && myLocation !== null) {
       const mapLocation = new naver.maps.LatLng(
         myLocation.latitude,
         myLocation.longitude
@@ -29,7 +30,7 @@ export default function useNaverMap() {
       };
       const map = new naver.maps.Map(mapElement.current, mapOptions);
       //지도상에 핀 표시 할 부분
-      drugstoreLocation.then((obj) => {
+      drugstoreLocation?.then((obj) => {
         Object.values(obj).forEach((index) => {
           const aroundDrugstore = new naver.maps.LatLng(
             index.drugstore_lat,
