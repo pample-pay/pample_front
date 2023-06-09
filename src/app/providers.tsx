@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { GeolocationContext } from "@/context/GeolocationContext";
@@ -8,7 +8,10 @@ import { ThemeProvider } from "@material-tailwind/react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const { drugstoreLocation, myLocation } = useUserLocation();
-  const locations = { drugstoreLocation, myLocation };
+  const locations = useMemo(
+    () => ({ drugstoreLocation, myLocation }),
+    [drugstoreLocation, myLocation]
+  );
 
   const [queryClient] = useState(() => new QueryClient());
 
