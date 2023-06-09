@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppSelector } from "@/redux/hooks";
 import { useEffect, useState } from "react";
 
@@ -10,9 +12,7 @@ export default function useDrugstoreList() {
   useEffect(() => {
     drugstoreLocation?.then((obj) => {
       setLocation(obj);
-      return;
     });
   }, [drugstoreLocation]);
-
   return location;
 }

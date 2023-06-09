@@ -1,3 +1,5 @@
+"use client";
+
 import useDrugstoreList from "@/hooks/useDrugstoreList";
 
 export default function DrugstoreList() {

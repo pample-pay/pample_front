@@ -1,4 +1,3 @@
-"use client";
 import NaverMap from "../components/home/NaverMap";
 import DrugstoreList from "../components/home/DrugstoreList";
 import Container from "@/components/Container";

@@ -1,3 +1,5 @@
+"use client";
+
 import useNaverMap from "@/hooks/useNaverMap";
 
 export default function NaverMap() {
