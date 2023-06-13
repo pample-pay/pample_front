@@ -1,16 +1,15 @@
-import { useAppDispatch } from "./../redux/hooks";
 import { useEffect } from "react";
-import mapMarkApi from "../app/apis/navermap/mapMarkApi";
+import { useAppDispatch } from "@/redux/hooks";
 import {
   setMyLocation,
   setDrugstoreLocation,
 } from "@/redux/features/userLocation";
+import mapMarkApi from "@/app/apis/navermap/mapMarkApi";
 
 export default function useUserLocation() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-  
     const error = () => {
       dispatch(setDrugstoreLocation(mapMarkApi(37.5666103, 126.9783882)));
     };
@@ -28,7 +27,7 @@ export default function useUserLocation() {
         )
       );
     };
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
     }

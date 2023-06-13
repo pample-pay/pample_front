@@ -8,8 +8,10 @@ const axiosApi = (url: string) => {
 };
 
 const axiosAuthApi = (url: string) => {
-  const token = "";
-  const instance = axios.create({ baseURL: url, headers: {} });
+  const token = ""; // 토큰을 설정해야 함
+  const headers = { Authorization: `Bearer ${token}` }; // 헤더를 설정해야 함
+  const instance = axios.create({ baseURL: url, headers });
+  return instance;
 };
 
 export const defaultInstance = axiosApi(baseUrl);

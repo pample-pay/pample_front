@@ -1,6 +1,6 @@
 "use client";
 
-import useDrugstoreList from "@/hooks/useDrugstoreList";
+import useDrugstoreList from "@/hooks/home/useDrugstoreList";
 
 export default function DrugstoreList() {
   const location = useDrugstoreList();
