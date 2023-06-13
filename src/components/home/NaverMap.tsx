@@ -8,9 +8,7 @@ export default function NaverMap() {
     <>
       <div
         ref={mapElement}
-        className="w-[40rem] h-[40rem] rounded-2xl border-white drop-shadow-lg
-
-        "
+        className="w-[40rem] h-[40rem] rounded-2xl border-white drop-shadow-lg"
       ></div>
       <script
         type="text/javascript"
