@@ -22,6 +22,11 @@ export default function LoginInput() {
     },
     []
   );
+  const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      mutate(user);
+    }
+  };
   const { isLogin, mutate } = useLoginMutation();
   return (
     <div className="flex flex-col border-slate-50 border-2 w-[32rem] justify-center items-center rounded-lg mb-3	">
@@ -33,6 +38,7 @@ export default function LoginInput() {
           type="text"
           className="w-[30rem]	"
           onChange={handleEmailChange}
+          onKeyDown={handleKeypress}
         />
         <Input
           color="cyan"
@@ -41,6 +47,7 @@ export default function LoginInput() {
           type="password"
           className="w-[30rem]	mb-20"
           onChange={handlePasswordChange}
+          onKeyDown={handleKeypress}
         />
         <Button
           className="w-[28rem] mb-12 "
