@@ -29,7 +29,6 @@ export const location = createSlice({
 export const {
   setDrugstoreLocation,
   setMyLocation,
-
   reset,
 } = location.actions;
 export default location.reducer;

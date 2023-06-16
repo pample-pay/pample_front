@@ -53,9 +53,7 @@ export default function LoginInput() {
           className="w-[28rem] mb-12 "
           color="cyan"
           ripple={false}
-          onClick={() => {
-            mutate(user);
-          }}
+          onClick={() => mutate(user)}
         >
           로그인
         </Button>

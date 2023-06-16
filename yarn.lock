@@ -119,7 +119,7 @@
   dependencies:
     client-only "^0.0.1"
 
-"@heroicons/react@^2.0.13":
+"@heroicons/react@^2.0.13", "@heroicons/react@^2.0.18":
   version "2.0.18"
   resolved "https://registry.npmjs.org/@heroicons/react/-/react-2.0.18.tgz"
   integrity sha512-7TyMjRrZZMBPa+/5Y8lN0iyvUU/01PeMGX2+RE7cQWpEUIcb4QotzUObFkJDejj/HUH4qjP/eQ0gzzKs2f+6Yw==
@@ -181,9 +181,9 @@
     "@jridgewell/sourcemap-codec" "1.4.14"
 
 "@material-tailwind/react@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/@material-tailwind/react/-/react-2.0.1.tgz"
-  integrity sha512-V40Tq9gJB6lIdsob4DXEDKoVzJ5BqOcj5hq4VepwJhLkQ2pKlWh7GIpFQtq6Pmhw65CmSQ3bjOzm/5YbeMycAA==
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/@material-tailwind/react/-/react-2.0.3.tgz"
+  integrity sha512-GS9ML4lmE4cBu6fqGXJ5KFM8sTWWSARnrFjlchXvpl3QpqmfjajiCYgZfqvKMuJxNXRqWUEh6DM8Q8rm9OX5ZA==
   dependencies:
     "@floating-ui/react" "^0.19.0"
     "@heroicons/react" "^2.0.13"
@@ -2736,9 +2736,9 @@ tabbable@^6.0.1:
   integrity sha512-qCN98uP7i9z0fIS4amQ5zbGBOq+OSigYeGvPy7NDk8Y9yncqDZ9pRPgfsc2PJIVM9RrJj7GIfuRgmjoUU9zTHQ==
 
 tailwind-merge@^1.8.1:
-  version "1.13.1"
-  resolved "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-1.13.1.tgz"
-  integrity sha512-tRtRN22TDokGi2TuYSvuHQuuW6BJ/zlUEG+iYpAQ9i66msc/0eU/+HPccbPnNNH0mCPp0Ob8thaC8Uy9CxHitQ==
+  version "1.13.2"
+  resolved "https://registry.npmjs.org/tailwind-merge/-/tailwind-merge-1.13.2.tgz"
+  integrity sha512-R2/nULkdg1VR/EL4RXg4dEohdoxNUJGLMnWIQnPKL+O9Twu7Cn3Rxi4dlXkDzZrEGtR+G+psSXFouWlpTyLhCQ==
 
 tailwindcss@3.3.2:
   version "3.3.2"
