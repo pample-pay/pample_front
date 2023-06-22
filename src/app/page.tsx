@@ -2,7 +2,7 @@
 import NaverMap from "../components/home/NaverMap";
 import DrugstoreList from "../components/home/DrugstoreList";
 import Container from "@/components/Container";
-import useGetUserLocation from "@/hooks/home/useGetUserLocation";
+import useGetUserLocation from "@/hooks/useGetUserLocation";
 
 export default function Home() {
   const { isLoading } = useGetUserLocation();

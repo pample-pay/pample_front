@@ -12,10 +12,11 @@ import {
 import { Menu } from "@headlessui/react";
 import { useRecoilState } from "recoil";
 import { loginState } from "@/recoil/loginState";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Header() {
-  const [isLogin, setIsLogin] = useRecoilState(loginState);
-
+  const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);
+  const { logout } = useAuth();
   return (
     <header className="flex justify-between items-center container mx-auto">
       <Link href="/">
@@ -35,26 +36,50 @@ export default function Header() {
           <Menu.Items className="absolute w-[20rem] flex flex-col	top-16 right-1 z-10">
             <div className="rounded-md bg-gray-50 border-4 border-gray-200	">
               <Menu.Item>
-                <Link
-                  className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
-                  href="/login"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6 mr-2 ml-2"
+                {isLogin ? (
+                  <Link
+                    className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
+                    href="/login"
+                    onClick={logout}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-                    />
-                  </svg>
-                  로그인
-                </Link>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6 mr-2 ml-2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                      />
+                    </svg>
+                    로그아웃
+                  </Link>
+                ) : (
+                  <Link
+                    className={`flex items-center	h-[3rem] bg-white  rounded-md  hover:bg-[#4fbecd]`}
+                    href="/login"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6 mr-2 ml-2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                      />
+                    </svg>
+                    로그인
+                  </Link>
+                )}
               </Menu.Item>
               <Menu.Item>
                 {

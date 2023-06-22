@@ -1,4 +1,4 @@
-import useLoginMutation from "@/hooks/login/useLoginMutation";
+import { useAuth } from "@/hooks/useAuth";
 import { Button, Input } from "@material-tailwind/react";
 import { useCallback, useState } from "react";
 import { User } from "@/components/login/types";
@@ -27,7 +27,7 @@ export default function LoginInput() {
       mutate(user);
     }
   };
-  const { loginInputMessage, mutate } = useLoginMutation();
+  const { loginInputMessage, mutate } = useAuth();
   return (
     <div className="flex flex-col border-slate-50 border-2 w-[32rem] justify-center items-center rounded-lg mb-3	">
       <div className="flex w-[28rem] flex-col items-center justify-center gap-10 h-52	mt-14">

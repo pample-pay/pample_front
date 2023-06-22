@@ -1,5 +1,5 @@
 "use client";
-import useNaverMap from "@/hooks/home/useNaverMap";
+import useNaverMap from "@/hooks/useNaverMap";
 
 export default function NaverMap() {
   const mapElement = useNaverMap();

@@ -1,6 +1,6 @@
 "use client";
 
-import useDrugstoreList from "@/hooks/home/useDrugstoreList";
+import useDrugstoreList from "@/hooks/useDrugstoreList";
 import Link from "next/link";
 
 export default function DrugstoreList() {
