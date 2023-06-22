@@ -12,8 +12,8 @@ export default function Home() {
         <div>로딩중</div>
       ) : (
         <>
-          <DrugstoreList />
           <NaverMap />
+          <DrugstoreList />
         </>
       )}
       <script

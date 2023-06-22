@@ -27,7 +27,7 @@ export default function LoginInput() {
       mutate(user);
     }
   };
-  const { isLogin, mutate } = useLoginMutation();
+  const { loginInputMessage, mutate } = useLoginMutation();
   return (
     <div className="flex flex-col border-slate-50 border-2 w-[32rem] justify-center items-center rounded-lg mb-3	">
       <div className="flex w-[28rem] flex-col items-center justify-center gap-10 h-52	mt-14">
@@ -58,7 +58,7 @@ export default function LoginInput() {
           로그인
         </Button>
       </div>
-      {isLogin ? (
+      {!loginInputMessage ? (
         ""
       ) : (
         <div className="mb-6 text-sm	text-red-400	 text-center	">

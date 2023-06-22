@@ -1,9 +1,7 @@
 import { createContext } from "react";
 
 interface ILogin {
-  isLogin?: boolean;
-  userId?: string;
-  
+  isLogin: boolean;
 }
 
-export const GeolocationContext = createContext<ILogin>({ isLogin: false });
+export const LoginContext = createContext<ILogin>({ isLogin: false });

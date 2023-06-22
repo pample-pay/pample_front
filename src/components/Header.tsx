@@ -10,8 +10,12 @@ import {
   faBars, // className 명을 참고해서 import 시켜주고 ex) fa-arrow-left
 } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "@headlessui/react";
+import { useRecoilState } from "recoil";
+import { loginState } from "@/recoil/loginState";
 
 export default function Header() {
+  const [isLogin, setIsLogin] = useRecoilState(loginState);
+
   return (
     <header className="flex justify-between items-center container mx-auto">
       <Link href="/">
