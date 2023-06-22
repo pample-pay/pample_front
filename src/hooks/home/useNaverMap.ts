@@ -1,10 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useAppSelector } from "@/redux/hooks";
-import useUserLocation from "./useGetUserLocation";
 
 export default function useNaverMap() {
   const mapElement = useRef<HTMLElement | null | any>(null);
-  useUserLocation();
   const drugstoreLocation = useAppSelector(
     (state) => state.locationReducer.drugstoreLocation
   );
