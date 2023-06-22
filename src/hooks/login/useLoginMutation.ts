@@ -11,7 +11,9 @@ export default function useLoginMutation() {
     (user: User) => login(user.id, user.password),
     {
       onSuccess: (response) => {
-        console.log(response);
+        console.log(response.data.token.access_token);
+        localStorage.setItem("access_token", response.data.token.access);
+        localStorage.setItem("refresh_token", response.data.token.refresh);
         setIsLogin(true);
         router.replace("/");
         // localStorage.setItem('access_token',loginData.)
