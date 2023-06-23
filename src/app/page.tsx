@@ -3,6 +3,8 @@ import NaverMap from "../components/home/NaverMap";
 import DrugstoreList from "../components/home/DrugstoreList";
 import Container from "@/components/Container";
 import useGetUserLocation from "@/hooks/useGetUserLocation";
+import { GetServerSidePropsContext } from "next";
+import { checkAccessToken } from "./apis/auth/apis";
 
 export default function Home() {
   const { isLoading } = useGetUserLocation();

@@ -1,4 +1,4 @@
-import { defaultInstance } from "../axios/index";
+import { authInstance, defaultInstance } from "../axios/index";
 import { AxiosResponse } from "axios";
 
 export async function login(
@@ -11,12 +11,7 @@ export async function login(
   });
 }
 
-export async function checkToken(
-  access: string,
-  refresh: string
-): Promise<AxiosResponse<any>> {
-  return await defaultInstance.post("users/token/", {
-    access: access,
-    refresh: refresh,
-  });
+export async function checkAccessToken(): Promise<AxiosResponse<any>> {
+  const access = localStorage.getItem("access_token");
+  return await authInstance(access).post("users/token/");
 }

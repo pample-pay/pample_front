@@ -2,17 +2,14 @@ import axios from "axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
 
-const axiosApi = (url: string) => {
-  const instance = axios.create({ baseURL: url });
-  return instance;
-};
+const axiosApi = (url: string) => axios.create({ baseURL: url });
 
-const axiosAuthApi = (url: string) => {
-  const token = ""; // 토큰을 설정해야 함
-  const headers = { Authorization: `Bearer ${token}` }; // 헤더를 설정해야 함
-  const instance = axios.create({ baseURL: url, headers });
-  return instance;
-};
+const axiosAuthApi = (url: string, token: string | null) =>
+  axios.create({
+    baseURL: url,
+    headers: { Authorization: `Bearer ${token}` },
+  });
 
 export const defaultInstance = axiosApi(baseUrl);
-export const authInstance = axiosAuthApi(baseUrl);
+export const authInstance = (token: string | null) =>
+  axiosAuthApi(baseUrl, token);

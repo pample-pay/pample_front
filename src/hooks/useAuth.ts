@@ -1,8 +1,9 @@
+"use client";
 import { loginState } from "@/recoil/loginState";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
 import { User } from "@/components/login/types";
-import { login } from "@/app/apis/auth/apis";
+import { checkAccessToken, login } from "@/app/apis/auth/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
@@ -12,8 +13,7 @@ export function useAuth() {
   const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(["refresh_token"]);
-
-  const { mutate } = useMutation(
+  const loginMutation = useMutation(
     (user: User) => login(user.id, user.password),
     {
       onSuccess: (response) => {
@@ -31,10 +31,34 @@ export function useAuth() {
       },
     }
   );
+  const { mutate: authMutation } = useMutation(checkAccessToken, {
+    onSuccess: (response) => {
+      console.log(response.data);
+      setIsLogin(true);
+    },
+    onError: () => {
+      setIsLogin(false);
+      if (localStorage.getItem("access_token") != null) {
+        console.log(localStorage.getItem("access_token"));
+        alert("다시 로그인해주세요!");
+      }
+    },
+  });
+
   const logout = () => {
     removeCookie("refresh_token");
     localStorage.removeItem("access_token");
+    alert("access 만료 및 로그아웃");
     setIsLogin(false);
   };
-  return { loginInputMessage, mutate, logout };
+  return { authMutation, loginInputMessage, loginMutation, logout };
 }
+// export const logout = () => {
+//   const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);
+//   const [cookies, setCookie, removeCookie] = useCookies(["refresh_token"]);
+
+//   removeCookie("refresh_token");
+//   localStorage.removeItem("access_token");
+//   alert("access 만료 및 로그아웃");
+//   setIsLogin(false);
+// };

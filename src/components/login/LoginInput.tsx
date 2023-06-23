@@ -24,10 +24,10 @@ export default function LoginInput() {
   );
   const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      mutate(user);
+      loginMutation.mutate(user);
     }
   };
-  const { loginInputMessage, mutate } = useAuth();
+  const { loginInputMessage, loginMutation } = useAuth();
   return (
     <div className="flex flex-col border-slate-50 border-2 w-[32rem] justify-center items-center rounded-lg mb-3	">
       <div className="flex w-[28rem] flex-col items-center justify-center gap-10 h-52	mt-14">
@@ -53,7 +53,7 @@ export default function LoginInput() {
           className="w-[28rem] mb-12 "
           color="cyan"
           ripple={false}
-          onClick={() => mutate(user)}
+          onClick={() => loginMutation.mutate(user)}
         >
           로그인
         </Button>

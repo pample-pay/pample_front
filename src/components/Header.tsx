@@ -2,8 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import pharmacy from "../../public/pharmacy_people.png";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,10 +13,23 @@ import { Menu } from "@headlessui/react";
 import { useRecoilState } from "recoil";
 import { loginState } from "@/recoil/loginState";
 import { useAuth } from "@/hooks/useAuth";
+import { useEffect } from "react";
 
 export default function Header() {
-  const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);
-  const { logout } = useAuth();
+  const [isLogin] = useRecoilState<boolean>(loginState);
+  const { logout, authMutation } = useAuth();
+  useEffect(() => {
+    authMutation();
+  }, [authMutation]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("access_token") === null) {
+  //     logout();
+  //   } else {
+  //     authMutation(localStorage.getItem("access_token"));
+  //     // authMutation.mutate(localStorage.getItem("access_token"));
+  //   }
+  // }, []);
+
   return (
     <header className="flex justify-between items-center container mx-auto">
       <Link href="/">
