@@ -12,7 +12,7 @@ export default function DrugstoreList() {
         return (
           <Link
             href={`/lists/${item.id}/${item.drugstore_name}`}
-            key={item.drugstore_hp}
+            key={item.id}
             className="flex flex-col w-80% rounded-2xl border p-3 m-5 justify-evenly"
           >
             <div className="font-bold">{item.drugstore_name}</div>
