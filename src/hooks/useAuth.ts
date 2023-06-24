@@ -39,7 +39,6 @@ export function useAuth() {
     onError: () => {
       setIsLogin(false);
       if (localStorage.getItem("access_token") != null) {
-        console.log(localStorage.getItem("access_token"));
         alert("다시 로그인해주세요!");
       }
     },
