@@ -1,4 +1,4 @@
-import { authInstance, defaultInstance } from "../axios/index";
+import { authInstance, defaultInstance } from "../index";
 import { AxiosResponse } from "axios";
 
 export async function login(

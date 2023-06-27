@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type LocationState = {
   drugstoreLocation: Promise<object> | null;
-  myLocation: { latitude: number; longitude: number };
+  myLocation: { lat: number; lng: number };
 };
 
 const initialState = {
   drugstoreLocation: null,
-  myLocation: { latitude: 37.5666103, longitude: 126.9783882 },
+  myLocation: { lat: 37.5666103, lng: 126.9783882 },
 } as LocationState;
 export const location = createSlice({
   name: "location",
@@ -19,16 +19,12 @@ export const location = createSlice({
     },
     setMyLocation: (
       state,
-      action: PayloadAction<{ latitude: number; longitude: number }>
+      action: PayloadAction<{ lat: number; lng: number }>
     ) => {
       state.myLocation = action.payload;
     },
   },
 });
 
-export const {
-  setDrugstoreLocation,
-  setMyLocation,
-  reset,
-} = location.actions;
+export const { setDrugstoreLocation, setMyLocation, reset } = location.actions;
 export default location.reducer;

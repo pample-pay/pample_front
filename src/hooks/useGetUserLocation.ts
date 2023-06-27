@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import {
   setMyLocation,
@@ -7,30 +7,47 @@ import {
 } from "@/redux/features/userLocation";
 import mapMarkApi from "@/app/apis/navermap/mapMarkApi";
 
+interface latLug {
+  lat: number;
+  lng: number;
+}
+
 export default function useGetUserLocation() {
   const dispatch = useAppDispatch();
-
-  const error = () =>
-    dispatch(setDrugstoreLocation(mapMarkApi(37.5666103, 126.9783882)));
-
-  const success = (position: GeolocationPosition) => {
-    dispatch(
-      setMyLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-    );
-    dispatch(
-      setDrugstoreLocation(
-        mapMarkApi(position.coords.latitude, position.coords.longitude)
-      )
-    );
+  const useGetMapMark = useMutation(
+    (latLug: latLug) => mapMarkApi(latLug.lat, latLug.lng),
+    {
+      onSuccess: (response) => {
+        const data = response.data;
+        dispatch(setDrugstoreLocation(data));
+      },
+    }
+  );
+  const error = async () => {
+    await useGetMapMark.mutateAsync({
+      lat: 37.5666103,
+      lng: 126.9783882,
+    });
   };
 
-  const { data, isLoading } = useQuery(["getUserLocation"], () => {
-    if (navigator.geolocation)
+  const success = async (position: GeolocationPosition) => {
+    const updatedLatLug = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    dispatch(
+      setMyLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      })
+    );
+    await useGetMapMark.mutateAsync(updatedLatLug);
+  };
+  const { isLoading } = useQuery(["getUserLocation"], () => {
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
-    return null;
+      return null;
+    }
   });
 
   return { isLoading };

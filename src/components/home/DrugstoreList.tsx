@@ -1,15 +1,15 @@
-"use client";
-
-import useDrugstoreList from "@/hooks/useDrugstoreList";
+import { useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 
 export default function DrugstoreList() {
-  const location = useDrugstoreList();
+  const drugstoreLocation = useAppSelector(
+    (state) => state.locationReducer.drugstoreLocation
+  );
 
   return (
-    <div className="w-[37rem] h-[40rem] rounded-2xl border-white overflow-auto		">
-      {Object.values(location).map((item) => {
-        return (
+    <div className="w-[37rem] h-[40rem] rounded-2xl border-white overflow-auto">
+      {drugstoreLocation &&
+        Object.values(drugstoreLocation).map((item) => (
           <Link
             href={`/lists/${item.id}/${item.drugstore_name}`}
             key={item.id}
@@ -18,8 +18,7 @@ export default function DrugstoreList() {
             <div className="font-bold">{item.drugstore_name}</div>
             <div className="">{item.drugstore_address}</div>
           </Link>
-        );
-      })}
+        ))}
     </div>
   );
 }
