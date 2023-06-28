@@ -1,20 +1,28 @@
 "use client";
-import { loginState } from "@/recoil/loginState";
+import { loginState } from "@/atoms/loginState";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
-import { User } from "@/components/login/types";
-import { checkAccessToken, login } from "@/app/apis/auth/apis";
+import { LoginInput } from "@/components/login/types";
+import {
+  checkAccessToken,
+  login,
+  refreshAccessToken,
+} from "@/app/apis/auth/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
 export function useAuth() {
   const [loginInputMessage, setLoginInputMessage] = useState(false);
+
   const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);
+
   const router = useRouter();
+
   const [cookies, setCookie, removeCookie] = useCookies(["refresh_token"]);
-  const loginMutation = useMutation(
-    (user: User) => login(user.id, user.password),
+
+  const { mutate: loginMutation } = useMutation(
+    (user: LoginInput) => login(user.id, user.password),
     {
       onSuccess: (response) => {
         console.log(response.data.token.access_token);
@@ -23,23 +31,54 @@ export function useAuth() {
         setLoginInputMessage(false);
         setIsLogin(true);
         router.replace("/");
-        // localStorage.setItem('access_token',loginData.)
       },
       onError: (error) => {
-        console.log(error);
         setLoginInputMessage(true);
       },
     }
   );
-  const { mutate: authMutation } = useMutation(checkAccessToken, {
+
+  const { mutate: getUserInfoMutation } = useMutation(checkAccessToken, {
     onSuccess: (response) => {
       console.log(response.data);
+      // user_id, user_name, user_type drug_id
       setIsLogin(true);
     },
     onError: () => {
-      setIsLogin(false);
-      if (localStorage.getItem("access_token") != null) {
-        console.log('다시로그인')
+      alert("다시 로그인해주세요!");
+      logout();
+    },
+  });
+
+  const { mutate: refreshAccessTokenMutation } = useMutation(
+    (refresh: string) => refreshAccessToken(refresh),
+    {
+      onSuccess: (response) => {
+        //refresh token 이 만료되기 전일때
+        localStorage.setItem("access_token", response.data.access);
+        console.log("refresh access");
+        getUserInfoMutation();
+        //무한 루프를 탈 가능성 만약 refreshAccessTokenMutation가 api 오류로 에러나는 경우
+      },
+      onError: (error) => {
+        console.log("refreshAccessToken error", error);
+        logout();
+      },
+    }
+  );
+
+  const { mutate: checkTokenMutation } = useMutation(checkAccessToken, {
+    onSuccess: (response) => {
+      console.log(response.data);
+      // user_id, user_name, user_type drug_id
+      setIsLogin(true);
+    },
+    onError: () => {
+      if (cookies.refresh_token == null) {
+        console.log("refreshtoken= null");
+        logout();
+      } else if (cookies.refresh_token != null) {
+        refreshAccessTokenMutation(cookies.refresh_token);
       }
     },
   });
@@ -47,10 +86,10 @@ export function useAuth() {
   const logout = () => {
     removeCookie("refresh_token");
     localStorage.removeItem("access_token");
-    alert("access 만료 및 로그아웃");
+    console.log("로그아웃");
     setIsLogin(false);
   };
-  return { authMutation, loginInputMessage, loginMutation, logout };
+  return { checkTokenMutation, loginInputMessage, loginMutation, logout };
 }
 // export const logout = () => {
 //   const [isLogin, setIsLogin] = useRecoilState<boolean>(loginState);

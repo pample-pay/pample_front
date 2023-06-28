@@ -11,16 +11,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "@headlessui/react";
 import { useRecoilState } from "recoil";
-import { loginState } from "@/recoil/loginState";
+import { loginState } from "@/atoms/loginState";
 import { useAuth } from "@/hooks/useAuth";
 import { useEffect } from "react";
 
 export default function Header() {
   const [isLogin] = useRecoilState<boolean>(loginState);
-  const { logout, authMutation } = useAuth();
+  const { logout, checkTokenMutation } = useAuth();
   useEffect(() => {
-    authMutation();
-  }, [authMutation]);
+    checkTokenMutation();
+  }, [checkTokenMutation]);
   // useEffect(() => {
   //   if (localStorage.getItem("access_token") === null) {
   //     logout();

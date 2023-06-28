@@ -3,7 +3,7 @@ export default function Container({
   className,
 }: {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) {
   return (
     <div className={`container mx-auto flex ${className}`}>{children}</div>

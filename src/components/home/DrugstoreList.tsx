@@ -11,7 +11,7 @@ export default function DrugstoreList() {
       {drugstoreLocation &&
         Object.values(drugstoreLocation).map((item) => (
           <Link
-            href={`/lists/${item.id}/${item.drugstore_name}`}
+            href={`/lists/${item.id}`}
             key={item.id}
             className="flex flex-col w-80% rounded-2xl border p-3 m-5 justify-evenly"
           >

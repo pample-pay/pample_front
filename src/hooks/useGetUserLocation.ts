@@ -21,12 +21,14 @@ export default function useGetUserLocation() {
         const data = response.data;
         dispatch(setDrugstoreLocation(data));
       },
+      cacheTime: 1000 * 30,
     }
   );
   const error = async () => {
     await useGetMapMark.mutateAsync({
       lat: 37.5666103,
       lng: 126.9783882,
+      // 위치 거부시 서울 시청 좌표
     });
   };
 

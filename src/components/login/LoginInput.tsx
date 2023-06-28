@@ -1,10 +1,10 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Button, Input } from "@material-tailwind/react";
 import { useCallback, useState } from "react";
-import { User } from "@/components/login/types";
+import { LoginInput } from "@/components/login/types";
 
 export default function LoginInput() {
-  const [user, setUser] = useState<User>({
+  const [user, setUser] = useState<LoginInput>({
     id: "",
     password: "",
   });
@@ -24,7 +24,7 @@ export default function LoginInput() {
   );
   const handleKeypress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      loginMutation.mutate(user);
+      loginMutation(user);
     }
   };
   const { loginInputMessage, loginMutation } = useAuth();
@@ -53,7 +53,7 @@ export default function LoginInput() {
           className="w-[28rem] mb-12 "
           color="cyan"
           ripple={false}
-          onClick={() => loginMutation.mutate(user)}
+          onClick={() => loginMutation(user)}
         >
           로그인
         </Button>
