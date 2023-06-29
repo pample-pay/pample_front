@@ -4,9 +4,9 @@ import { useRecoilState } from "recoil";
 import { useState } from "react";
 import { LoginInput } from "@/components/login/types";
 import {
-  checkAccessToken,
-  login,
-  refreshAccessToken,
+  checkAccessTokenApi,
+  loginApi,
+  refreshAccessTokenApi,
 } from "@/app/apis/auth/apis";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -22,7 +22,7 @@ export function useAuth() {
   const [cookies, setCookie, removeCookie] = useCookies(["refresh_token"]);
 
   const { mutate: loginMutation } = useMutation(
-    (user: LoginInput) => login(user.id, user.password),
+    (user: LoginInput) => loginApi(user.id, user.password),
     {
       onSuccess: (response) => {
         console.log(response.data.token.access_token);
@@ -38,7 +38,7 @@ export function useAuth() {
     }
   );
 
-  const { mutate: getUserInfoMutation } = useMutation(checkAccessToken, {
+  const { mutate: getUserInfoMutation } = useMutation(checkAccessTokenApi, {
     onSuccess: (response) => {
       console.log(response.data);
       // user_id, user_name, user_type drug_id
@@ -51,7 +51,7 @@ export function useAuth() {
   });
 
   const { mutate: refreshAccessTokenMutation } = useMutation(
-    (refresh: string) => refreshAccessToken(refresh),
+    (refresh: string) => refreshAccessTokenApi(refresh),
     {
       onSuccess: (response) => {
         //refresh token 이 만료되기 전일때
@@ -67,7 +67,7 @@ export function useAuth() {
     }
   );
 
-  const { mutate: checkTokenMutation } = useMutation(checkAccessToken, {
+  const { mutate: checkTokenMutation } = useMutation(checkAccessTokenApi, {
     onSuccess: (response) => {
       console.log(response.data);
       // user_id, user_name, user_type drug_id
